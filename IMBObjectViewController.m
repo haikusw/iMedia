@@ -188,7 +188,7 @@ static NSMutableDictionary* sRegisteredObjectViewControllerClasses = nil;
         } else {
             self.objectCountFormatPlural = [[self class] objectCountFormatPlural];
         }
-    }
+     }
 }
 
 
@@ -979,10 +979,13 @@ static NSMutableDictionary* sRegisteredObjectViewControllerClasses = nil;
 		// if the system attempts to communicate with the tooltip's owner which is being removed from the view...
 		
 		[ibIconView removeAllToolTips];
+		
         [ibIconView reloadData];
 
-		// Items loading into the view will cause a change in the scroller's clip view, which will cause the tooltips
-		// to be revised to suit only the current visible items...
+		// Scroll to top and redraw the view. For some reason setNeedsDisplay isn't enough?
+		
+		[ibIconView scrollPoint:NSMakePoint(0.0,ibIconView.bounds.size.height)];
+		[ibIconView display];
 	}
 }
 
@@ -992,6 +995,11 @@ static NSMutableDictionary* sRegisteredObjectViewControllerClasses = nil;
 	if ([ibListView.window isVisible])
 	{
         [ibListView reloadData];
+        
+		// Scroll to top and redraw the view. For some reason setNeedsDisplay isn't enough?
+		
+		[ibListView scrollPoint:NSMakePoint(0.0,ibListView.bounds.size.height)];
+		[ibListView display];
 	}
 }
 
@@ -1001,6 +1009,11 @@ static NSMutableDictionary* sRegisteredObjectViewControllerClasses = nil;
 	if ([ibComboView.window isVisible])
 	{
         [ibComboView reloadData];
+
+		// Scroll to top and redraw the view. For some reason setNeedsDisplay isn't enough?
+			
+		[ibComboView scrollPoint:NSMakePoint(0.0,ibComboView.bounds.size.height)];
+		[ibComboView display];
 	}
 }
 
