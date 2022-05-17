@@ -111,6 +111,21 @@
 
 // Check if Lightroom is installed. Give preference to the newest version...
 
++ (NSString*) lightroomAppBundleIdentifier
+{
+	NSString* identifier = nil;
+	
+	if (identifier == nil) identifier = [IMBLightroom7Parser lightroomAppBundleIdentifier];
+	if (identifier == nil) identifier = [IMBLightroom6Parser lightroomAppBundleIdentifier];
+	if (identifier == nil) identifier = [IMBLightroom5Parser lightroomAppBundleIdentifier];
+	if (identifier == nil) identifier = [IMBLightroom4Parser lightroomAppBundleIdentifier];
+	if (identifier == nil) identifier = [IMBLightroom3Parser lightroomAppBundleIdentifier];
+	if (identifier == nil) identifier = [IMBLightroom2Parser lightroomAppBundleIdentifier];
+	if (identifier == nil) identifier = [IMBLightroom1Parser lightroomAppBundleIdentifier];
+	
+	return identifier;
+}
+
 + (NSString*) lightroomPath
 {
 	NSString* path = nil;

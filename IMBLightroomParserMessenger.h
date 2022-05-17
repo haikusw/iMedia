@@ -63,6 +63,10 @@
 
 @interface IMBLightroomParserMessenger : IMBParserMessenger
 
++ (NSString*) lightroomAppBundleIdentifier;
++ (NSString*) lightroomPath;
++ (BOOL) isInstalled;
+
 @end
 
 
