@@ -126,6 +126,7 @@
 	return identifier;
 }
 
+
 + (NSString*) lightroomPath
 {
 	NSString* path = nil;
@@ -140,6 +141,23 @@
 	
 	return path;
 }
+
+
++ (NSArray*) libraryPaths
+{
+	NSMutableArray* paths = [NSMutableArray array];
+	
+	[paths addObjectsFromArray: [IMBLightroom7Parser libraryPaths]];
+	[paths addObjectsFromArray: [IMBLightroom6Parser libraryPaths]];
+	[paths addObjectsFromArray: [IMBLightroom5Parser libraryPaths]];
+	[paths addObjectsFromArray: [IMBLightroom4Parser libraryPaths]];
+	[paths addObjectsFromArray: [IMBLightroom3Parser libraryPaths]];
+	[paths addObjectsFromArray: [IMBLightroom2Parser libraryPaths]];
+	[paths addObjectsFromArray: [IMBLightroom1Parser libraryPaths]];
+	
+	return paths;
+}
+
 
 + (BOOL) isInstalled
 {

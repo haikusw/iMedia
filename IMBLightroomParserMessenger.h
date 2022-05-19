@@ -65,6 +65,7 @@
 
 + (NSString*) lightroomAppBundleIdentifier;
 + (NSString*) lightroomPath;
++ (NSArray*) libraryPaths;
 + (BOOL) isInstalled;
 
 @end
