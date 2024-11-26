@@ -58,12 +58,25 @@
 
 @interface IMBLightroomModernParser : IMBLightroomParser <IMBLightroomParser>
 {
-	
+	NSNumber* _usesLrprevPyramidFiles;
 }
 
 - (NSNumber*) databaseVersion;
 
-+ (NSData*) previewDataForLightroomObject:(IMBLightroomObject*)lightroomObject maximumSize:(NSNumber*)maximumSize;
+// The resolved path points to either a .lrprev pyramid or to the largest available preview image
++ (NSString*) resolvedPyramidPathWithPyramidPath:(NSString *)absolutePyramidPath
+									preferLrprev:(BOOL)preferLrprev
+						   acceptAlternateDigest:(BOOL)acceptAlternateDigest;
+
+// Provides JPEG data. Finds the appropriate segment of the .lrprev or appropriate image file
+// The image data still needs to be adjusted to match the correct image orientation
++ (NSData*) previewDataWithResolvedPyramidPath:(NSString*)resolvedPyramidPath
+								   maximumSize:(NSNumber*)maximumSize;
+
+//+ (NSData*) previewDataWithPyramidPath:(NSString *)absolutePyramidPath
+//						   maximumSize:(NSNumber*)maximumSize
+//						  preferLrprev:(BOOL)preferLrprev
+//				 acceptAlternateDigest:(BOOL)acceptAlternateDigest;
 
 @end
 
